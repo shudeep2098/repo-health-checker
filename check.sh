@@ -29,15 +29,13 @@ if find . -name ".env" | grep -q .; then
 fi
 
 # CHECK 5 — Commit messages > 5 words
-git log --pretty=%s | while read line
-do
-  WORD_COUNT=$(echo "$line" | wc -w)
+COMMIT_MSG=$(git log -1 --pretty=%s)
+WORD_COUNT=$(echo "$COMMIT_MSG" | wc -w)
 
-  if [ "$WORD_COUNT" -le 5 ]; then
-    echo "Commit message too short: $line"
-    exit 1
-  fi
-done
+if [ "$WORD_COUNT" -le 5 ]; then
+  echo "Commit message too short: $COMMIT_MSG"
+  exit 1
+fi
 
 echo "All checks passed!"
 exit 0
