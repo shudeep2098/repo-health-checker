@@ -1,2 +1,3 @@
 dist
 nodemodules
+.env
