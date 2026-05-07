@@ -1,0 +1,20 @@
+name: Repo Health Checker
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Give Permission
+        run: chmod +x check.sh
+
+      - name: Run Validation Script
+        run: ./check.sh
