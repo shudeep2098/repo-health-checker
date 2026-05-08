@@ -37,5 +37,11 @@ if [ "$WORD_COUNT" -le 5 ]; then
   exit 1
 fi
 
+# CHECK 6 — No TODO comments
+if grep -r "TODO" . --exclude-dir=.git; then
+  echo "TODO comments found"
+  exit 1
+fi
+
 echo "All checks passed!"
 exit 0
